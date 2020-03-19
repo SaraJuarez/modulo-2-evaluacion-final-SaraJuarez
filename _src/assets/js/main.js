@@ -25,6 +25,10 @@ function paintSearchedFilms() {
   for (let i = 0; i < searchedMovies.length; i++) {
     console.log(searchedMovies[i].show.name);
     movieCode += `<article class="film">`;
+    movieCode += `<img class="film-image"`;
+    movieCode += `src="${searchedMovies[i].show.image.medium}"`;
+    movieCode += `alt=""`;
+    movieCode += `7>`;
     movieCode += `<p>${searchedMovies[i].show.name}</p>`;
     movieCode += `</article>`;
   }
