@@ -1,0 +1,50 @@
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.page-title {
+  display: flex;
+  justify-content: center;
+}
+
+.container {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+  align-items: center;
+  &__main {
+    width: 70%;
+    padding: 10px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  &__aside {
+    width: 30%;
+  }
+}
+
+.film {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+}
+.film-image {
+  height: 100px;
+  width: 100px;
+}
+/* BORDER PARA MAQUETAR */
+
+.container__main {
+  border: solid 1px black;
+}
+
+.container__aside {
+  border: solid 1px red;
+}
+
+.film {
+  border: solid 2px green;
+}
