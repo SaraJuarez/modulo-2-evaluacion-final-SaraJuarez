@@ -21,14 +21,19 @@ function getMovieInfo() {
 }
 
 function paintSearchedFilms() {
+  searchContainer.innerHTML = "";
   let movieCode = "";
   for (let i = 0; i < searchedMovies.length; i++) {
     console.log(searchedMovies[i].show.name);
     movieCode += `<article class="film">`;
     movieCode += `<img class="film-image"`;
-    movieCode += `src="${searchedMovies[i].show.image.medium}"`;
+    if (searchedMovies[i].show.image === null) {
+      movieCode += `src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"`;
+    } else {
+      movieCode += `src="${searchedMovies[i].show.image.medium}"`;
+    }
     movieCode += `alt=""`;
-    movieCode += `7>`;
+    movieCode += `>`;
     movieCode += `<p>${searchedMovies[i].show.name}</p>`;
     movieCode += `</article>`;
   }
@@ -36,20 +41,5 @@ function paintSearchedFilms() {
   moviesSelected = moviesSelected + movieCode;
   searchContainer.innerHTML = moviesSelected;
 }
-
-// paintSearchedFilms();
-
-// function getSearchedFilmsHtmlCode() {
-//   let searchedFilmCode = "";
-//   searchedFilmCode += `<article class="film">`;
-//   searchedFilmCode += `<img`;
-//   searchedFilmCode += `class="film-image"`;
-//   searchedFilmCode += `src="https://www.cinetecamadrid.com/sites/default/files/styles/imagenes_medianas/public/activity/image/Carmen-de-carabanchel-cartel.jpg?itok=4xwMxYsJ"`;
-//   searchedFilmCode += `alt=""/>`;
-//   searchedFilmCode += `<p>${searchedMovies[i].show.name}</p>`;
-//   searchedFilmCode += `</article>`;
-//   console.log(searchedFilmCode);
-//   return searchedFilmCode;
-// }
 
 button.addEventListener("click", getMovieInfo);

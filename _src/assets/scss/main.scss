@@ -6,6 +6,8 @@
 .page-title {
   display: flex;
   justify-content: center;
+  font-family: "Permanent Marker", cursive;
+  font-size: 40px;
 }
 
 .container {
@@ -35,6 +37,10 @@
   flex-direction: column;
 }
 .film-image {
+  height: 100px;
+  width: 100px;
+}
+.film-image-result {
   height: 100px;
   width: 100px;
 }
