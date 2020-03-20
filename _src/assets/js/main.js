@@ -57,35 +57,34 @@ function addToFavorites(ev) {
   const clickedFilmStyle = ev.currentTarget;
   clickedFilmStyle.classList.toggle("culo");
 
-  const clickedFilm = ev.currentTarget.dataset.id;
+  // const clickedFilm = ev.currentTarget.dataset.id;
 
-  console.log(clickedFilm);
-  console.log("holi");
-  for (let i = 0; i < searchedMovies.length; i++) {
-    if (clickedFilm === favMovies[i].show.id) {
-      // o ya está dentro, no repetirla
-      console.log(searchedMovies[i]);
-      //     console.log("heheheh");
-    } else {
-      console.log("shit");
-    }
-  }
+  // console.log(clickedFilm);
+  // console.log("holi");
+  // for (let i = 0; i < searchedMovies.length; i++) {
+  //   if (clickedFilm === searchedMovies[i].show.id) {
+  //     // o ya está dentro, no repetirla
+  //     console.log("");
+  //     //     console.log("heheheh");
+  //   } else {
+  //     console.log("shit");
+  //   }
+  // }
   favMovies.push(searchedMovies[0]);
   console.log(favMovies);
   paintFavMovies();
 }
 
 function paintFavMovies() {
-  // favMoviesContainer.innerHTML = "";
   let favCode = "";
   for (let i = 0; i < favMovies.length; i++) {
     favCode += `<article class="fav-film">`;
     favCode += `<img `;
     favCode += `class="film-image-result"`;
-    favCode += ` src="${favMovies[i].show.image.medium}"`;
+    favCode += ` src="${favMovies[0].show.image.medium}"`;
     favCode += ` alt=""`;
     favCode += `/>`;
-    favCode += `<p>${favMovies[i].show.name}</p>`;
+    favCode += `<p>${favMovies[0].show.name}</p>`;
     favCode += `</article>`;
   }
 
@@ -100,20 +99,23 @@ function paintFavMovies() {
 function getFavFromLocalStorage() {
   let arrLocalStorage = JSON.parse(localStorage.getItem("Movie"));
   favMoviesContainer.innerHTML = "";
-  let favCode = "";
-  for (let i = 0; i < arrLocalStorage.length; i++) {
-    favCode += `<article class="fav-film">`;
-    favCode += `<img `;
-    favCode += `class="film-image-result"`;
-    favCode += ` src="${arrLocalStorage[i].show.image.medium}"`;
-    favCode += ` alt=""`;
-    favCode += `/>`;
-    favCode += `<p>${arrLocalStorage[i].show.name}</p>`;
-    favCode += `</article>`;
+  let listCode = "";
+  if (arrLocalStorage != null) {
+    for (let i = 0; i < arrLocalStorage.length; i++) {
+      listCode += `<article class="fav-film">`;
+      listCode += `<img `;
+      listCode += `class="film-image-result"`;
+      listCode += ` src="${arrLocalStorage[i].show.image.medium}"`;
+      listCode += ` alt=""`;
+      listCode += `/>`;
+      listCode += `<p>${arrLocalStorage[i].show.name}</p>`;
+      listCode += `</article>`;
+    }
+    let favoriteMovies = "";
+    favoriteMovies = favoriteMovies + listCode;
+    favMoviesContainer.innerHTML = favoriteMovies;
+  } else {
   }
-  let favoriteMovies = "";
-  favoriteMovies = favoriteMovies + favCode;
-  favMoviesContainer.innerHTML = favoriteMovies;
 }
 getFavFromLocalStorage();
 
