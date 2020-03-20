@@ -58,18 +58,8 @@ function addToFavorites(ev) {
   clickedFilmStyle.classList.toggle("culo");
 
   // const clickedFilm = ev.currentTarget.dataset.id;
-
   // console.log(clickedFilm);
-  // console.log("holi");
-  // for (let i = 0; i < searchedMovies.length; i++) {
-  //   if (clickedFilm === searchedMovies[i].show.id) {
-  //     // o ya está dentro, no repetirla
-  //     console.log("");
-  //     //     console.log("heheheh");
-  //   } else {
-  //     console.log("shit");
-  //   }
-  // }
+
   favMovies.push(searchedMovies[0]);
   console.log(favMovies);
   paintFavMovies();
@@ -89,8 +79,8 @@ function paintFavMovies() {
   }
 
   let favoriteMovies = "";
-  favoriteMovies = favoriteMovies + favCode;
-  favMoviesContainer.innerHTML += favoriteMovies;
+  favoriteMovies = favCode;
+  favMoviesContainer.innerHTML = favoriteMovies;
   addFavToLocalStorage();
 }
 
@@ -98,23 +88,10 @@ function paintFavMovies() {
 
 function getFavFromLocalStorage() {
   let arrLocalStorage = JSON.parse(localStorage.getItem("Movie"));
-  favMoviesContainer.innerHTML = "";
-  let listCode = "";
+
   if (arrLocalStorage != null) {
-    for (let i = 0; i < arrLocalStorage.length; i++) {
-      listCode += `<article class="fav-film">`;
-      listCode += `<img `;
-      listCode += `class="film-image-result"`;
-      listCode += ` src="${arrLocalStorage[i].show.image.medium}"`;
-      listCode += ` alt=""`;
-      listCode += `/>`;
-      listCode += `<p>${arrLocalStorage[i].show.name}</p>`;
-      listCode += `</article>`;
-    }
-    let favoriteMovies = "";
-    favoriteMovies = favoriteMovies + listCode;
-    favMoviesContainer.innerHTML = favoriteMovies;
-  } else {
+    favMovies = arrLocalStorage;
+    paintFavMovies();
   }
 }
 getFavFromLocalStorage();
