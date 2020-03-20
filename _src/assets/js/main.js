@@ -5,6 +5,7 @@ const input = document.querySelector(".js-input");
 const searchContainer = document.querySelector(".js-container-main");
 
 let searchedMovies = [];
+let favMovies = [];
 
 function getMovieInfo() {
   let filmInput;
@@ -53,8 +54,18 @@ function listenAddMoviesArticles() {
 
 function addInfoLocalStorage(ev) {
   const clickedFilm = ev.currentTarget.dataset.id;
+  const clickedFilmStyle = ev.currentTarget;
+  clickedFilmStyle.classList.toggle("culo");
   console.log(clickedFilm);
   console.log("holi");
+  for (let i = 0; i < searchedMovies.length; i++) {
+    if (clickedFilm === searchedMovies[i]) {
+      console.log(searchedMovies[i]);
+      console.log("heheheh");
+    } else {
+      console.log("shit");
+    }
+  }
 }
 
 button.addEventListener("click", getMovieInfo);
