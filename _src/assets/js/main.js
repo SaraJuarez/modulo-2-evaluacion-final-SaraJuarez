@@ -54,27 +54,29 @@ function listenAddMoviesArticles() {
 }
 
 function addToFavorites(ev) {
-  // const clickedFilm = ev.currentTarget.dataset.id;
-  // const clickedFilmStyle = ev.currentTarget;
-  // clickedFilmStyle.classList.toggle("culo");
-  // console.log(clickedFilm);
-  // console.log("holi");
-  // for (let i = 0; i < searchedMovies.length; i++) {
-  //   if (clickedFilm === searchedMovies[i]) {
-  // o ya está dentro, no repetirla
-  //     console.log(searchedMovies[i]);
-  //     console.log("heheheh");
-  //   } else {
-  //     console.log("shit");
-  //   }
-  // }
+  const clickedFilmStyle = ev.currentTarget;
+  clickedFilmStyle.classList.toggle("culo");
+
+  const clickedFilm = ev.currentTarget.dataset.id;
+
+  console.log(clickedFilm);
+  console.log("holi");
+  for (let i = 0; i < searchedMovies.length; i++) {
+    if (clickedFilm === favMovies[i].show.id) {
+      // o ya está dentro, no repetirla
+      console.log(searchedMovies[i]);
+      //     console.log("heheheh");
+    } else {
+      console.log("shit");
+    }
+  }
   favMovies.push(searchedMovies[0]);
   console.log(favMovies);
   paintFavMovies();
 }
 
 function paintFavMovies() {
-  favMoviesContainer.innerHTML = "";
+  // favMoviesContainer.innerHTML = "";
   let favCode = "";
   for (let i = 0; i < favMovies.length; i++) {
     favCode += `<article class="fav-film">`;
@@ -89,12 +91,38 @@ function paintFavMovies() {
 
   let favoriteMovies = "";
   favoriteMovies = favoriteMovies + favCode;
-  favMoviesContainer.innerHTML = favoriteMovies;
+  favMoviesContainer.innerHTML += favoriteMovies;
   addFavToLocalStorage();
 }
+
+// ESTA FUNCIÓN RECOGE AL ARRANCAR LA PÁGINA LAS PELIS FAVORITAS DEL LOCAL STORAGE
+
+function getFavFromLocalStorage() {
+  let arrLocalStorage = JSON.parse(localStorage.getItem("Movie"));
+  favMoviesContainer.innerHTML = "";
+  let favCode = "";
+  for (let i = 0; i < arrLocalStorage.length; i++) {
+    favCode += `<article class="fav-film">`;
+    favCode += `<img `;
+    favCode += `class="film-image-result"`;
+    favCode += ` src="${arrLocalStorage[i].show.image.medium}"`;
+    favCode += ` alt=""`;
+    favCode += `/>`;
+    favCode += `<p>${arrLocalStorage[i].show.name}</p>`;
+    favCode += `</article>`;
+  }
+  let favoriteMovies = "";
+  favoriteMovies = favoriteMovies + favCode;
+  favMoviesContainer.innerHTML = favoriteMovies;
+}
+getFavFromLocalStorage();
+
+// ESTA FUNCIÓN INCLUYE EN LOCAL STORAGE LAS PELIS INCLUIDAS EN EL ARRAY FAVMOVIES
 
 function addFavToLocalStorage() {
   localStorage.setItem("Movie", JSON.stringify(favMovies));
 }
+
+// LISTENER DEL BOTÓN SEARCH PARA BUSCAR SERIES
 
 button.addEventListener("click", getMovieInfo);
