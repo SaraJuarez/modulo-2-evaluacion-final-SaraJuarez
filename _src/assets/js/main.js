@@ -24,8 +24,8 @@ function paintSearchedFilms() {
   searchContainer.innerHTML = "";
   let movieCode = "";
   for (let i = 0; i < searchedMovies.length; i++) {
-    console.log(searchedMovies[i].show.name);
-    movieCode += `<article class="film">`;
+    // console.log(searchedMovies[i].show.name);
+    movieCode += `<article data-id="${i}" class="film js-film">`;
     movieCode += `<img class="film-image"`;
     if (searchedMovies[i].show.image === null) {
       movieCode += `src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"`;
@@ -40,6 +40,21 @@ function paintSearchedFilms() {
   let moviesSelected = "";
   moviesSelected = moviesSelected + movieCode;
   searchContainer.innerHTML = moviesSelected;
+  listenAddMoviesArticles();
+}
+
+function listenAddMoviesArticles() {
+  const movieArticles = document.querySelectorAll(".js-film");
+  for (const movieArticle of movieArticles) {
+    movieArticle.addEventListener("click", addInfoLocalStorage);
+  }
+  console.log(movieArticles);
+}
+
+function addInfoLocalStorage(ev) {
+  const clickedFilm = ev.currentTarget.dataset.id;
+  console.log(clickedFilm);
+  console.log("holi");
 }
 
 button.addEventListener("click", getMovieInfo);
