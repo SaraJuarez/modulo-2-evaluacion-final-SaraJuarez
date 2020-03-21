@@ -57,10 +57,29 @@ function addToFavorites(ev) {
   const clickedFilmStyle = ev.currentTarget;
   clickedFilmStyle.classList.toggle("culo");
 
-  // const clickedFilm = ev.currentTarget.dataset.id;
-  // console.log(clickedFilm);
+  const clickedFilm = ev.currentTarget.dataset.id;
+  for (let i = 0; i < array.length; i++) {
+    if (clickedFilm === favMovies[i].show.id) {
+    // entonces recorres el array favMovies de nuevo y retiras el elemento que coincide. para eso debemos conocer su posición
+    for (let film = 0; film < favMovies.length; film++) {
+      indexOfClickedFilm = favMovies.indexOf('favmovies[i].show.id')
+      console.log(indexOfClickedFilm);
+      
+    }
 
-  favMovies.push(searchedMovies[0]);
+    }
+    else {
+      for (let index = 0; index < searchedMovies.length; index++) {
+        if (clickedFilm === searchedMovies[i].show.id) {
+          favMovies.push(searchedMovies[i]);
+          
+        }
+        
+      }
+      // favMovies.push(searchedMovies)
+    }
+  
+  // favMovies.push(searchedMovies[0]);
   console.log(favMovies);
   paintFavMovies();
 }
