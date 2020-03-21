@@ -23,21 +23,11 @@ function getMovieInfo() {
 }
 
 function paintSearchedFilms() {
-  console.log("estoy entrando en pintar películas");
-
-  for (let i = 0; i < searchedMovies.length; i++) {
-    for (let index = 0; index < favMovies.length; index++) {
-      if (searchedMovies[i].show.id === favMovies[index].show.id) {
-        console.log("coincide la película");
-      }
-    }
-  }
-
   searchContainer.innerHTML = "";
   let movieCode = "";
   for (let i = 0; i < searchedMovies.length; i++) {
     // console.log(searchedMovies[i].show.name);
-    movieCode += `<article data-id="${searchedMovies[i].show.id}" class="film js-film">`;
+    movieCode += `<article data-id="${searchedMovies[i].show.id}" class="film js-film" id="${searchedMovies[i].show.id}">`;
     movieCode += `<img class="film-image"`;
     if (searchedMovies[i].show.image === null) {
       movieCode += `src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"`;
@@ -52,6 +42,16 @@ function paintSearchedFilms() {
   let moviesSelected = "";
   moviesSelected = moviesSelected + movieCode;
   searchContainer.innerHTML = moviesSelected;
+
+  for (let i = 0; i < searchedMovies.length; i++) {
+    for (let index = 0; index < favMovies.length; index++) {
+      if (searchedMovies[i].show.id === favMovies[index].show.id) {
+        let movieToPaint = searchedMovies[i].show.id;
+        const movieToPaintHtml = document.getElementById(movieToPaint);
+        movieToPaintHtml.classList.add("culo");
+      }
+    }
+  }
   listenAddMoviesArticles();
 }
 
@@ -120,7 +120,11 @@ function paintFavMovies() {
     favCode += `<article class="fav-film">`;
     favCode += `<img `;
     favCode += `class="film-image-result"`;
-    favCode += ` src="${favMovies[i].show.image.medium}"`;
+    if (favMovies[i].show.image === null) {
+      favCode += `src="https://via.placeholder.com/210x295/ffffff/666666/?text=TV"`;
+    } else {
+      favCode += `src="${favMovies[i].show.image.medium}"`;
+    }
     favCode += ` alt=""`;
     favCode += `/>`;
     favCode += `<p>${favMovies[i].show.name}</p>`;
