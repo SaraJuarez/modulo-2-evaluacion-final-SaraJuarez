@@ -58,37 +58,47 @@ function addToFavorites(ev) {
   clickedFilmStyle.classList.toggle("culo");
 
   const clickedFilm = ev.currentTarget.dataset.id;
+  let foundMovie;
 
-  if (favMovies.length != 0) {
-    for (let i = 0; i < favMovies.length; i++) {
-      console.log(favMovies[i].show.id);
-      if (parseInt(clickedFilm) === favMovies[i].show.id) {
-        // entonces recorres el array favMovies de nuevo y retiras el elemento que coincide. para eso debemos conocer su posición
-
-        console.log("entramos");
-        debugger;
-
-        const indexOfClickedFilm = favMovies.indexOf("favmovies[i].show.id");
-        console.log(indexOfClickedFilm);
-        // retirar el elemento con el splice
-        // }
-      } else {
-        // for (let index = 0; index < searchedMovies.length; index++) {
-        if (parseInt(clickedFilm) === searchedMovies[index].show.id) {
-          favMovies.push(searchedMovies[index]);
-        }
-        // }
-
-        // favMovies.push(searchedMovies)
-      }
-    }
-  } else {
-    for (let i = 0; i < searchedMovies.length; i++) {
-      if (parseInt(clickedFilm) === searchedMovies[i].show.id) {
-        favMovies.push(searchedMovies[i]);
-      }
+  for (let i = 0; i < searchedMovies.length; i++) {
+    if (parseInt(clickedFilm) === searchedMovies[i].show.id) {
+      foundMovie = searchedMovies[i];
     }
   }
+
+  // tengo que recoger en una variable los datos que quiero pusear
+  let alreadyFavMovies;
+
+  for (let i = 0; i < favMovies.length; i++) {
+    if (parseInt(clickedFilm) === favMovies[i].show.id) {
+      alreadyFavMovies = favMovies[i];
+      console.log(favMovies.splice(i, 1));
+      favMovies.splice(i, 1);
+
+      console.log("mierda en salsa");
+      paintFavMovies();
+      return alreadyFavMovies;
+    } else {
+      alreadyFavMovies = undefined;
+    }
+  }
+  console.log(alreadyFavMovies);
+  if (alreadyFavMovies === undefined) {
+    favMovies.push(foundMovie);
+  }
+
+  // for (let i = 0; i < favMovies.length; i++) {
+  //   if (foundMovie.show.id === favMovies[i].show.id) {
+  //     console.log("duplicada");
+  //   } else {
+  //     favMovies.push(foundMovie);
+  //   }
+  // }
+  if (favMovies.length != 0) {
+  } else {
+    favMovies.push(foundMovie);
+  }
+
   paintFavMovies();
 }
 
