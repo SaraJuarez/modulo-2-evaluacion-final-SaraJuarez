@@ -58,29 +58,37 @@ function addToFavorites(ev) {
   clickedFilmStyle.classList.toggle("culo");
 
   const clickedFilm = ev.currentTarget.dataset.id;
-  for (let i = 0; i < array.length; i++) {
-    if (clickedFilm === favMovies[i].show.id) {
-    // entonces recorres el array favMovies de nuevo y retiras el elemento que coincide. para eso debemos conocer su posición
-    for (let film = 0; film < favMovies.length; film++) {
-      indexOfClickedFilm = favMovies.indexOf('favmovies[i].show.id')
-      console.log(indexOfClickedFilm);
-      
-    }
 
-    }
-    else {
-      for (let index = 0; index < searchedMovies.length; index++) {
-        if (clickedFilm === searchedMovies[i].show.id) {
-          favMovies.push(searchedMovies[i]);
-          
+  if (favMovies.length != 0) {
+    for (let i = 0; i < favMovies.length; i++) {
+      console.log(favMovies[i].show.id);
+      if (parseInt(clickedFilm) === favMovies[i].show.id) {
+        // entonces recorres el array favMovies de nuevo y retiras el elemento que coincide. para eso debemos conocer su posición
+
+        console.log("entramos");
+        debugger;
+
+        const indexOfClickedFilm = favMovies.indexOf("favmovies[i].show.id");
+        console.log(indexOfClickedFilm);
+        // retirar el elemento con el splice
+        // }
+      } else {
+        // for (let index = 0; index < searchedMovies.length; index++) {
+        if (parseInt(clickedFilm) === searchedMovies[index].show.id) {
+          favMovies.push(searchedMovies[index]);
         }
-        
+        // }
+
+        // favMovies.push(searchedMovies)
       }
-      // favMovies.push(searchedMovies)
     }
-  
-  // favMovies.push(searchedMovies[0]);
-  console.log(favMovies);
+  } else {
+    for (let i = 0; i < searchedMovies.length; i++) {
+      if (parseInt(clickedFilm) === searchedMovies[i].show.id) {
+        favMovies.push(searchedMovies[i]);
+      }
+    }
+  }
   paintFavMovies();
 }
 
@@ -90,10 +98,10 @@ function paintFavMovies() {
     favCode += `<article class="fav-film">`;
     favCode += `<img `;
     favCode += `class="film-image-result"`;
-    favCode += ` src="${favMovies[0].show.image.medium}"`;
+    favCode += ` src="${favMovies[i].show.image.medium}"`;
     favCode += ` alt=""`;
     favCode += `/>`;
-    favCode += `<p>${favMovies[0].show.name}</p>`;
+    favCode += `<p>${favMovies[i].show.name}</p>`;
     favCode += `</article>`;
   }
 
