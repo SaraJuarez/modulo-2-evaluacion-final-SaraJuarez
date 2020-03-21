@@ -26,7 +26,6 @@ function paintSearchedFilms() {
   searchContainer.innerHTML = "";
   let movieCode = "";
   for (let i = 0; i < searchedMovies.length; i++) {
-    // console.log(searchedMovies[i].show.name);
     movieCode += `<article data-id="${searchedMovies[i].show.id}" class="film js-film" id="${searchedMovies[i].show.id}">`;
     movieCode += `<img class="film-image"`;
     if (searchedMovies[i].show.image === null) {
@@ -48,7 +47,7 @@ function paintSearchedFilms() {
       if (searchedMovies[i].show.id === favMovies[index].show.id) {
         let movieToPaint = searchedMovies[i].show.id;
         const movieToPaintHtml = document.getElementById(movieToPaint);
-        movieToPaintHtml.classList.add("culo");
+        movieToPaintHtml.classList.add("selected");
       }
     }
   }
@@ -60,12 +59,11 @@ function listenAddMoviesArticles() {
   for (const movieArticle of movieArticles) {
     movieArticle.addEventListener("click", addToFavorites);
   }
-  console.log(movieArticles);
 }
 
 function addToFavorites(ev) {
   const clickedFilmStyle = ev.currentTarget;
-  clickedFilmStyle.classList.toggle("culo");
+  clickedFilmStyle.classList.toggle("selected");
 
   const clickedFilm = ev.currentTarget.dataset.id;
   let foundMovie;
@@ -76,36 +74,22 @@ function addToFavorites(ev) {
     }
   }
 
-  // tengo que recoger en una variable los datos que quiero pusear
   let alreadyFavMovies;
 
   for (let i = 0; i < favMovies.length; i++) {
     if (parseInt(clickedFilm) === favMovies[i].show.id) {
       alreadyFavMovies = favMovies[i];
-
-      // aquí quitar color rojo de la seleccionada
       favMovies.splice(i, 1);
-
-      console.log("mierda en salsa");
       paintFavMovies();
       return alreadyFavMovies;
     } else {
       alreadyFavMovies = undefined;
-      // añadir color a la seleccionada
     }
   }
-  console.log(alreadyFavMovies);
+
   if (alreadyFavMovies === undefined) {
     favMovies.push(foundMovie);
   }
-
-  // for (let i = 0; i < favMovies.length; i++) {
-  //   if (foundMovie.show.id === favMovies[i].show.id) {
-  //     console.log("duplicada");
-  //   } else {
-  //     favMovies.push(foundMovie);
-  //   }
-  // }
   if (favMovies.length != 0) {
   } else {
     favMovies.push(foundMovie);
