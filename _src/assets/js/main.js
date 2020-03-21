@@ -73,6 +73,7 @@ function addToFavorites(ev) {
     if (parseInt(clickedFilm) === favMovies[i].show.id) {
       alreadyFavMovies = favMovies[i];
       console.log(favMovies.splice(i, 1));
+      // aquí quitar color rojo de la seleccionada
       favMovies.splice(i, 1);
 
       console.log("mierda en salsa");
@@ -80,6 +81,7 @@ function addToFavorites(ev) {
       return alreadyFavMovies;
     } else {
       alreadyFavMovies = undefined;
+      // añadir color a la seleccionada
     }
   }
   console.log(alreadyFavMovies);
