@@ -23,6 +23,16 @@ function getMovieInfo() {
 }
 
 function paintSearchedFilms() {
+  console.log("estoy entrando en pintar películas");
+
+  for (let i = 0; i < searchedMovies.length; i++) {
+    for (let index = 0; index < favMovies.length; index++) {
+      if (searchedMovies[i].show.id === favMovies[index].show.id) {
+        console.log("coincide la película");
+      }
+    }
+  }
+
   searchContainer.innerHTML = "";
   let movieCode = "";
   for (let i = 0; i < searchedMovies.length; i++) {
@@ -72,7 +82,7 @@ function addToFavorites(ev) {
   for (let i = 0; i < favMovies.length; i++) {
     if (parseInt(clickedFilm) === favMovies[i].show.id) {
       alreadyFavMovies = favMovies[i];
-      console.log(favMovies.splice(i, 1));
+
       // aquí quitar color rojo de la seleccionada
       favMovies.splice(i, 1);
 
