@@ -98,8 +98,8 @@
 
 .fav-film {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-around;
   align-items: center;
 }
 .selected {
@@ -123,6 +123,7 @@
   padding-left: 15px;
   padding-right: 15px;
   border: solid 2px black;
+  margin-top: 10px;
 }
 /* BORDER PARA MAQUETAR */
 

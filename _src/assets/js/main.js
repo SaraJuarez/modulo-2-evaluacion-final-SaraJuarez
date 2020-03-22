@@ -9,6 +9,8 @@ const resetButton = document.querySelector(".js-reset-button");
 let searchedMovies = [];
 let favMovies = [];
 
+// FUNCIÓN QUE RECOGE LOS DATOS DE LA API EN SEARCHEDMOVIES Y LLAMA A LA FUNCIÓN QUE PINTA LOS RESULTADOS DE BÚSQUEDA
+
 function getMovieInfo() {
   let filmInput;
   filmInput = input.value;
@@ -22,6 +24,8 @@ function getMovieInfo() {
       paintSearchedFilms();
     });
 }
+
+// ESTA FUNCIÓN PINTA LOS RESULTADOS DE BÚSQUEDA, VERIFICA SI ALGUNA PELÍCULA ESTÁ EN FAVORITOS PARA CAMBIAR SU COLOR Y LLAMA A LA FUNCIÓN QUE AÑADE LOS LISTENERS A CADA UNO DE LOS RESULTADOS
 
 function paintSearchedFilms() {
   searchContainer.innerHTML = "";
@@ -54,6 +58,7 @@ function paintSearchedFilms() {
   }
   listenAddMoviesArticles();
 }
+// FUNCIÓN QUE AÑADE LOS LISTENERS A LOS RESULTADOS DE BÚSQUEDA
 
 function listenAddMoviesArticles() {
   const movieArticles = document.querySelectorAll(".js-film");
@@ -62,9 +67,10 @@ function listenAddMoviesArticles() {
   }
 }
 
+// FUNCIÓN QUE AÑADE A FAVORITOS DESDE LOS DATOS DE SEARCHED MOVIES, VERIFICA QUE NO ESTABA ANTES EN FAVORITOS Y PINTA LOS FAVORITOS
+
 function addToFavorites(ev) {
   const clickedFilmStyle = ev.currentTarget;
-  console.log(clickedFilmStyle);
   clickedFilmStyle.classList.toggle("selected");
 
   const clickedFilm = ev.currentTarget.dataset.id;
@@ -92,18 +98,16 @@ function addToFavorites(ev) {
   if (alreadyFavMovies === undefined) {
     favMovies.push(foundMovie);
   }
-  // if (favMovies.length != 0) {
-  // } else {
-  //   favMovies.push(foundMovie);
-  // }
 
   paintFavMovies();
 }
 
+// FUNCIÓN QUE PINTA LAS PELÍCULAS FAVORITAS, LLAMA A LA FUNCIÓN QUE AÑADE LISTERNERS A LOS BOTONES LATERALES E INCLUYE LA INFORMACIÓN DE PELÍCULAS FAVORITAS AL LOCAL STORAGE
+
 function paintFavMovies() {
   let favCode = "";
   for (let i = 0; i < favMovies.length; i++) {
-    favCode += `<article class="fav-film">`;
+    favCode += `<article class="fav-film" id="${favMovies[i].show.id}">`;
     favCode += `<img `;
     favCode += `class="film-image-result"`;
     if (favMovies[i].show.image === null) {
@@ -114,14 +118,45 @@ function paintFavMovies() {
     favCode += ` alt=""`;
     favCode += `/>`;
     favCode += `<p class="text">${favMovies[i].show.name}</p>`;
+    favCode += `<i class="far fa-times-circle js-retire-button"></i> `;
     favCode += `</article>`;
   }
-
   let favoriteMovies = "";
   favoriteMovies = favCode;
   favMoviesContainer.innerHTML = favoriteMovies;
+  listenRetireButton();
   addFavToLocalStorage();
 }
+
+// FUNCIÓN QUE AÑADE LOS LISTERNERS A LOS BOTONES LATERALES DE LOS FAVORITOS
+
+function listenRetireButton() {
+  const retireButtons = document.querySelectorAll(".js-retire-button");
+  for (const retireButton of retireButtons) {
+    retireButton.addEventListener("click", retireFav);
+  }
+}
+
+// FUNCIÓN QUE RETIRA LA PELÍCULA DE FAVORITOS DESDE EL BOTÓN LATERAL DE FAVORITOS
+
+function retireFav(ev) {
+  const clickedFavToRetire = ev.currentTarget;
+  const mother = clickedFavToRetire.parentElement;
+  const motherId = mother.id;
+  console.log(motherId);
+  for (let i = 0; i < favMovies.length; i++) {
+    if (parseInt(motherId) === favMovies[i].show.id) {
+      let movieToRetire = favMovies[i];
+      favMovies.splice(i, 1);
+      paintFavMovies();
+      paintSearchedFilms();
+    }
+  }
+}
+
+// ESTA FUNCIÓN SE ENCARGA DE AÑADIR LOS LISTENERS A LAS PELIS FAVORITAS QUE ESTABAN YA ALMACENADAS EN LOCALSTORAGE
+
+listenRetireButton();
 
 // ESTA FUNCIÓN RECOGE AL ARRANCAR LA PÁGINA LAS PELIS FAVORITAS DEL LOCAL STORAGE
 
