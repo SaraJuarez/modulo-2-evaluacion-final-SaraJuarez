@@ -35,7 +35,7 @@ function paintSearchedFilms() {
     }
     movieCode += `alt=""`;
     movieCode += `>`;
-    movieCode += `<p>${searchedMovies[i].show.name}</p>`;
+    movieCode += `<p class="text">${searchedMovies[i].show.name}</p>`;
     movieCode += `</article>`;
   }
   let moviesSelected = "";
@@ -63,6 +63,7 @@ function listenAddMoviesArticles() {
 
 function addToFavorites(ev) {
   const clickedFilmStyle = ev.currentTarget;
+  console.log(clickedFilmStyle);
   clickedFilmStyle.classList.toggle("selected");
 
   const clickedFilm = ev.currentTarget.dataset.id;
@@ -90,10 +91,10 @@ function addToFavorites(ev) {
   if (alreadyFavMovies === undefined) {
     favMovies.push(foundMovie);
   }
-  if (favMovies.length != 0) {
-  } else {
-    favMovies.push(foundMovie);
-  }
+  // if (favMovies.length != 0) {
+  // } else {
+  //   favMovies.push(foundMovie);
+  // }
 
   paintFavMovies();
 }
@@ -111,7 +112,7 @@ function paintFavMovies() {
     }
     favCode += ` alt=""`;
     favCode += `/>`;
-    favCode += `<p>${favMovies[i].show.name}</p>`;
+    favCode += `<p class="text">${favMovies[i].show.name}</p>`;
     favCode += `</article>`;
   }
 
