@@ -106,6 +106,24 @@
   background-color: #21bf73;
   font-weight: bold;
 }
+
+.container-reset-button {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.reset-button {
+  text-decoration: none;
+  font-weight: 600;
+  background-color: #21bf73;
+  font-family: "Roboto", sans-serif;
+  border: 0;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border: solid 2px black;
+}
 /* BORDER PARA MAQUETAR */
 
 // .container__main {

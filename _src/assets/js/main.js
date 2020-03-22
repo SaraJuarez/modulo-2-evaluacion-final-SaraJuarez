@@ -4,6 +4,7 @@ const button = document.querySelector(".js-button");
 const input = document.querySelector(".js-input");
 const searchContainer = document.querySelector(".js-container-main");
 const favMoviesContainer = document.querySelector(".js-fav-films-container");
+const resetButton = document.querySelector(".js-reset-button");
 
 let searchedMovies = [];
 let favMovies = [];
@@ -143,3 +144,13 @@ function addFavToLocalStorage() {
 // LISTENER DEL BOTÓN SEARCH PARA BUSCAR SERIES
 
 button.addEventListener("click", getMovieInfo);
+
+// LISTENER Y FUNCIÓN DEL BOTÓN DE RESET
+
+function resetFavs() {
+  favMovies = [];
+  localStorage.setItem("Movie", JSON.stringify(favMovies));
+  favMoviesContainer.innerHTML = "";
+}
+
+resetButton.addEventListener("click", resetFavs);
