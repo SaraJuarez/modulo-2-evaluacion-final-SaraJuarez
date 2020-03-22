@@ -77,7 +77,9 @@
 }
 
 .film {
-  width: 200px;
+  // width: 200px;
+  padding-right: 10px;
+  padding-left: 10px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -89,15 +91,15 @@
   }
 }
 .film-image {
-  height: 200px;
-  width: 150px;
+  // height: 200px;
+  // width: 150px;
   padding-bottom: 10px;
   padding-top: 10px;
 }
-.film-image-result {
-  height: 150px;
-  width: 150px;
-}
+// .film-image-result {
+//   height: 150px;
+//   width: 150px;
+// }
 
 .fav-film {
   display: flex;
@@ -142,21 +144,8 @@
   padding-right: 15px;
   border: solid 2px black;
   margin-top: 10px;
+  margin-bottom: 10px;
+  &:hover {
+    background-color: #fd5e53;
+  }
 }
-/* BORDER PARA MAQUETAR */
-
-// .container__main {
-//   border: solid 1px black;
-// }
-
-// .container__aside {
-//   border: solid 1px red;
-// }
-
-// .film {
-//   border: solid 2px green;
-// }
-
-// .js-fav-films-container {
-//   border: solid 2px orange;
-// }
