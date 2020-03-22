@@ -180,12 +180,13 @@ function addFavToLocalStorage() {
 
 button.addEventListener("click", getMovieInfo);
 
-// LISTENER Y FUNCIÓN DEL BOTÓN DE RESET
+// LISTENER Y FUNCIÓN DEL BOTÓN DE RESET, QUE REPINTA LAS BÚSQUEDAS PARA QUE LAS RETIRADAS NO APAREZCAN CON LA CLASE SELECTED
 
 function resetFavs() {
   favMovies = [];
   localStorage.setItem("Movie", JSON.stringify(favMovies));
   favMoviesContainer.innerHTML = "";
+  paintSearchedFilms();
 }
 
 resetButton.addEventListener("click", resetFavs);
