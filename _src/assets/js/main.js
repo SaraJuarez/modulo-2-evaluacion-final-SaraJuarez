@@ -14,7 +14,7 @@ let favMovies = [];
 function getMovieInfo() {
   let filmInput;
   filmInput = input.value;
-  let url = `http://api.tvmaze.com/search/shows?q=${filmInput}`;
+  let url = `//api.tvmaze.com/search/shows?q=${filmInput}`;
   fetch(url)
     .then(function(response) {
       return response.json();
