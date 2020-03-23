@@ -67,7 +67,7 @@ function listenAddMoviesArticles() {
   }
 }
 
-// FUNCIÓN QUE AÑADE A FAVORITOS DESDE LOS DATOS DE SEARCHED MOVIES, VERIFICA QUE NO ESTABA ANTES EN FAVORITOS Y PINTA LOS FAVORITOS
+// FUNCIÓN QUE AÑADE A FAVORITOS DESDE LOS DATOS DE SEARCHED MOVIES, VERIFICA QUE NO ESTABA ANTES EN FAVORITOS Y LLAMA A LA FUNCIÓN PINTA LOS FAVORITOS
 
 function addToFavorites(ev) {
   const clickedFilmStyle = ev.currentTarget;
@@ -143,7 +143,6 @@ function retireFav(ev) {
   const clickedFavToRetire = ev.currentTarget;
   const mother = clickedFavToRetire.parentElement;
   const motherId = mother.id;
-  console.log(motherId);
   for (let i = 0; i < favMovies.length; i++) {
     if (parseInt(motherId) === favMovies[i].show.id) {
       let movieToRetire = favMovies[i];
