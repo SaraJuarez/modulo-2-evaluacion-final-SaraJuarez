@@ -43,11 +43,13 @@
   }
   &__aside {
     margin-top: 20px;
-    width: 40%;
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     @media all and (min-width: 768px) {
       flex-direction: column;
+      width: 40%;
     }
 
     &--title {
@@ -116,20 +118,26 @@
   }
 }
 .film-image {
-  // height: 200px;
-  // width: 150px;
   padding-bottom: 10px;
   padding-top: 10px;
 }
-// .film-image-result {
-//   height: 150px;
-//   width: 150px;
-// }
+
+@media all and(max-width: 768px) {
+  .film-image-result {
+    height: 100px;
+    width: 100px;
+  }
+  .text {
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+}
 
 .js-fav-films-container {
   @media all and (max-width: 768px) {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
   }
 }
 
@@ -180,13 +188,4 @@
   &:hover {
     background-color: #fd5e53;
   }
-}
-
-//  BORDES MAQUETACIÓN
-
-.container__main {
-  border: solid 3px red;
-}
-.container__aside {
-  border: solid 3px green;
 }
